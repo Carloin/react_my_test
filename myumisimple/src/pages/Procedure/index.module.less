@@ -1,0 +1,126 @@
+@import '~antd/es/style/themes/default.less';
+
+:root{
+  // --divbgcolor:transparent;
+  --fontColor:white;
+}
+//  @keyframes example {
+
+//     from{
+//       background-color: black;
+//     }
+//     to{
+//       background-color: blue;
+//     }
+//   }  
+//   @keyframes afterexample {
+//     from{
+//       background-color: blue;
+//     }
+//     to{
+//       background-color: blue;
+//     }
+//   }
+
+// html{
+//   font-size:19.20px;  /*默认以设计稿为基准*/
+// }
+
+// @media only screen and (max-width: 1366px) {
+//   html{
+//      font-size:13.66px;
+//   }
+// }
+
+
+@keyframes glow {
+  0% {
+      /* opacity:1; */
+              text-shadow: 0 0 10px #fff,
+                   0 0 20px #fff,
+                   0 0 30px #fff,
+                   0 0 40px #ff7200,
+                   0 0 70px #ff7200,
+                   0 0 80px #ff7200,
+                   0 0 100px #ff7200,
+                   0 0 150px #ff7200;
+                  
+   }
+  25% {
+      opacity:1;
+      color: #ff7200;
+   } 
+    50% {
+      opacity: 1; 
+      color: #ff7200;  
+  }
+  75% {
+      opacity:0.9;
+       text-shadow: 
+                   0 0 20px #ff7200,
+                   0 0 35px #ff7200,
+                   0 0 40px #ff7200,
+                   0 0 50px #ff7200,
+                   0 0 75px #ff7200;
+    color: #ff7200;  
+  }
+}
+@keyframes afterglow{
+  0% {
+    /* opacity:1; */
+            text-shadow: 
+                 0 0 40px #ff7200,
+                 0 0 70px #ff7200,
+                 0 0 80px #ff7200,
+                 0 0 100px #ff7200,
+                 0 0 150px #ff7200;
+ }
+// 25% {
+//     opacity:1;
+//  } 
+//   50% {
+//     opacity: 1;   
+// }
+75% {
+    opacity:0.9;
+     text-shadow: 0 0 5px #fff,
+                 0 0 10px #fff,
+                 0 0 15px #fff,
+                 0 0 20px #ff7200,
+                 0 0 35px #ff7200,
+                 0 0 40px #ff7200,
+                 0 0 50px #ff7200,
+                 0 0 75px #ff7200;
+}
+}
+.change{
+    // background-color: black;
+    // border-radius: 25px;
+    animation-name: glow;
+    animation-duration:4s;
+    animation-timing-function:ease;
+    animation-direction:alternate;
+   
+  }
+  .afterchange{
+    // background-color: black;
+    // border-radius: 25px;/
+    animation-name: afterglow;
+    animation-duration: 2s;
+    animation-timing-function:ease;
+    // animation-direction:alternate;
+  }
+  .other{
+    // background-color: black;
+    // border-radius: 25px;
+  }
+ .divsty{
+  color: var(--fontColor);
+    // border-radius: 25px;
+    text-align: center;
+    font-size: 0.8vw;
+    font-weight: bold;
+ }
+
+
+
