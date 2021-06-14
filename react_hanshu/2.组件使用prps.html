@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>菜鸟教程 React 实例</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .foo {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 1.创建函数式组件
+        function Person(props) {
+            const { name, age, sex } = props
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>性别：{sex}</li>
+                    <li>年龄：{age}</li>
+                </ul>
+            )
+        }
+        Person.protoTypes = {
+            name: protoTypes.string.isRequired,
+            sex: protoTypes.string,
+            age: protoTypes.string,
+        }
+        // 指定默认标签的属性值
+        Person.defaultProps = {
+            sex: '男',
+            age: 18,
+        }
+        // 2.渲染组件到界面
+        ReactDOM.render(<Person name="jerry" sex="女" age={18} />, document.getElementById('root'));
+
+    </script>
+</body>
+
+</html>

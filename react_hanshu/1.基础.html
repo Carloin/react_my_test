@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>菜鸟教程 React 实例</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .foo {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 1.创建函数式组件
+        function MyComponent() {
+            return <h2>123</h2>
+        }
+        // 2.渲染组件到界面
+        ReactDOM.render(<MyComponent />, document.getElementById('root'));
+    // 3. ReactDOM.render(...)之后，发生了什么？
+    // 1.React解析组件标签，找到了MyComponent组件
+    // 2.发现组件式使用函数定义的，随后调用该函数，将返回的虚拟dom转为真实dom,随后呈现在页面上
+    </script>
+</body>
+
+</html>
