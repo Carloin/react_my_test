@@ -16,8 +16,8 @@ function Index() {
 function List() {
   return <h2>List-Page</h2>;
 }
-// 1.使用useEffect()实现componentWillUnmount
-function Example3() {
+//2.使用useEffect()实现componentWillUnmount
+function Example4() {
   const [count, setCount] = useState(0);
   // useEffect(() => {
   //   console.log(`useEffect=>you clicked ${count} times`);
@@ -48,4 +48,4 @@ function Example3() {
     </div>
   );
 }
-export default Example3;
+export default Example4;
