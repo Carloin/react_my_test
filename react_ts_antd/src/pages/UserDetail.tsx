@@ -2,7 +2,7 @@
  * @Author: hft
  * @Date: 2021-09-28 15:31:07
  * @LastEditors: hft
- * @LastEditTime: 2021-09-28 17:02:50
+ * @LastEditTime: 2021-09-29 11:10:06
  * @Description: file content
  */
 import { strict } from 'assert'
@@ -26,11 +26,21 @@ class UserDetail extends Component<IPros, any> {
     //     console.log(match);
 
     // }
-    componentDidMount() {
-        //@ts-ignore
-        console.log(this.props.match.params.id);
+    // componentDidMount() {
+    //     //@ts-ignore
+    //     console.log(this.props);
+    //     console.log(this.props.match.path);//输出路由
+    //     console.log(this.props.match.url);//输出url
 
-    }
+    //     this.props.history.goBack()
+
+    //     const match = matchPath(this.props.match.url, {
+    //         path: "user/detail/:id",
+    //         exact: true,
+    //         strict: false
+    //     })
+    //     console.log(match);
+    // }
     render() {
         // if (!this.auth) {
         //     window.location.href='/login'
