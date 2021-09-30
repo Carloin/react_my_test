@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import './App.css';
-import UserList from './UserList';
+import UserList from './pages/UserList';
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +18,7 @@ import Users from './pages/Users';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import { router } from './router';
+import Lee from './withLee';
 
 const { SubMenu } = Menu;
 const { Sider, Content } = Layout
@@ -101,7 +102,9 @@ function App() {
 
           </Suspense>
       </Router>*/}
-    <Login></Login>
+    {/* <Login></Login> */}
+    {/* <UserList/> */}
+    <Lee name='sb'/>
     </>
   );
 }
