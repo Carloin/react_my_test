@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>菜鸟教程 React 实例</title>
+    <script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+    <style>
+        .foo {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 函数柯里化,saveFormData是一个函数
+        saveFormData = (dataType) => {
+            // 返回的也是一个函数，函数也接受到参数 event是react调的时候维护的对象
+            return (event) => {
+                // 进行统一处理
+                this.setState({ [dataType]: event.target.value })
+            }
+        }
+
+    </script>
+</body>
+
+</html>

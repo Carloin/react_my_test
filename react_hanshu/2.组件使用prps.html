@@ -28,16 +28,17 @@
                 </ul>
             )
         }
-        Person.protoTypes = {
-            name: protoTypes.string.isRequired,
-            sex: protoTypes.string,
-            age: protoTypes.string,
-        }
-        // 指定默认标签的属性值
-        Person.defaultProps = {
-            sex: '男',
-            age: 18,
-        }
+        // 这里需要使用prop-types.js组件库
+        // Person.protoTypes = {
+        //     name: protoTypes.string.isRequired,
+        //     sex: protoTypes.string,
+        //     age: protoTypes.string,
+        // }
+        // // 指定默认标签的属性值
+        // Person.defaultProps = {
+        //     sex: '男',
+        //     age: 18,
+        // }
         // 2.渲染组件到界面
         ReactDOM.render(<Person name="jerry" sex="女" age={18} />, document.getElementById('root'));
 
