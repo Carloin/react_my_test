@@ -1,7 +1,15 @@
+/*
+ * @Author: hft
+ * @Date: 2021-10-06 08:48:17
+ * @LastEditors: hft
+ * @LastEditTime: 2021-10-06 11:21:25
+ * @Description: file content
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css'
 
 ReactDOM.render(
   <React.StrictMode>

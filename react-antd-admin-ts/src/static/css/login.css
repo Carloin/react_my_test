@@ -1,0 +1,11 @@
+#login-form{
+    padding-top: 60px;
+    /* position: fixed; */
+    /* right: 100px;
+    top: 200px; */
+    border-radius: 10px;
+    background: #fcf;
+    margin: 0 auto;
+    width:500px;
+    height: 300px;
+}
