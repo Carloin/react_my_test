@@ -1,45 +1,51 @@
-/*
- * @Author: hft
- * @Date: 2021-10-06 11:00:15
- * @LastEditors: hft
- * @LastEditTime: 2021-10-06 15:21:41
- * @Description: file content
- */
-import { FormInstance, Form, Input, Button, Space, message } from 'antd'
-import React, { Component, createRef, RefObject } from 'react'
-import { login } from '../api/login'
+import React, {Component, createRef, RefObject} from 'react';
+import {Button, Form, FormInstance, Input, message, Space} from "antd";
 import '../static/css/login.css'
-import { set } from '../utils/storage'
+import {login} from "../api/login";
+import {AdminStore} from "../store/AdminStore";
+import {inject, observer} from "mobx-react";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+
+
 const layout = {
-    labelCol: { span: 4 },
-    wrapperCol: { span: 16 }
-}
+    labelCol: {span: 4},
+    wrapperCol: {span: 16},
+};
 const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 }
+    wrapperCol: {offset: 8, span: 16},
+};
+
+interface IProps extends RouteComponentProps {
+    adminStore?: AdminStore
 }
 
-export default class Login extends Component {
+@inject('adminStore')
+@observer
+class Login extends Component<IProps> {
     formRef: RefObject<FormInstance>
+
     constructor(props: any, context: any) {
-        super(props, context)
+        super(props, context);
         this.formRef = createRef<FormInstance>()
     }
+
     login = (form: any) => {
-        // (response:any)单写response  data.token报错
-        login(form.name, form.password).then((response:any) => {
-            const { code, msg, data } = response.data
+        login(form.name, form.password).then(response => {
+            const {code, msg, data} = response.data;
             if (code === 0) {
-                set('token', data.token)
-                window.location.href = '/'
+                this.props.adminStore?.login(data.token)
+                this.props.adminStore?.initAdmin()
+                this.props.history.push('/')
                 message.success(msg)
             } else {
                 message.error(msg)
             }
         })
     }
+
     render() {
         return (
-            <div>
+            <div id='login'>
                 <Form
                     id='login-form'
                     {...layout}
@@ -49,38 +55,42 @@ export default class Login extends Component {
                     <Form.Item
                         label='用户名'
                         name='name'
-                        rules={[{
-                            type: 'string',
-                            required: true
-                        }]}
+                        rules={[
+                            {
+                                type: 'string',
+                                required: true
+                            }
+                        ]}
                     >
-
-                        <Input />
+                        <Input/>
                     </Form.Item>
                     <Form.Item
                         label='用户名'
                         name='password'
-                        rules={[{
-                            type: 'string',
-                            required: true
-                        }]}
+                        rules={[
+                            {
+                                type: 'string',
+                                required: true
+                            }
+                        ]}
                     >
-                        <Input.Password />
+                        <Input.Password/>
                     </Form.Item>
                     <Form.Item {...tailLayout}>
                         <Space>
-                            <Button type='primary' htmlType='submit'>
+                            <Button type="primary" htmlType="submit">
                                 登录
                             </Button>
-                            <Button type='primary' htmlType='reset'>
+                            <Button type="primary" htmlType="reset">
                                 重置
                             </Button>
-                        </Space>
 
+                        </Space>
                     </Form.Item>
                 </Form>
             </div>
-        )
+        );
     }
 }
 
+export default withRouter(Login);

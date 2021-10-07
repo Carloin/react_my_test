@@ -1,21 +1,25 @@
-/*
- * @Author: hft
- * @Date: 2021-10-06 08:48:17
- * @LastEditors: hft
- * @LastEditTime: 2021-10-06 11:21:25
- * @Description: file content
- */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+
+import {ConfigProvider} from 'antd';
+import zhCN from 'antd/lib/locale/zh_CN';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+import {Provider} from "mobx-react";
+import store from './store'
+
+moment.locale('cn');
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <ConfigProvider locale={zhCN}>
+        <Provider {...store}>
+            <App/>
+        </Provider>
+    </ConfigProvider>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
