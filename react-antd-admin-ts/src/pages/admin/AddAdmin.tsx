@@ -32,7 +32,9 @@ class AddAdmin extends Component<IProps> {
             const {code, msg} = response.data
             if (code === 0) {
                 message.success(msg)
+                // 重置添加管理员的表单，添加完后，表单里的数据要为空，不能留有上一次的数据
                 this.formRef.current?.resetFields();
+                // 添加完后，就要刷新数据，可以在这里传数据，告诉父组件要刷新
                 this.props.callback(true)
             } else {
                 message.error(msg)

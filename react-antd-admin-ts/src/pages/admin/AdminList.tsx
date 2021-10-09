@@ -40,7 +40,7 @@ class AdminList extends Component<any, IState> {
     }
 
     getAdminList = (page: number = 1) => {
-        getAdminList(page).then(response => {
+        getAdminList(page).then((response:any) => {
             const {dataList, limit, totalCount} = response.data.data
             this.setState({
                 adminList: dataList,
@@ -83,6 +83,7 @@ class AdminList extends Component<any, IState> {
         })
     }
     hideEditAdminModal = (refresh?: boolean) => {
+        // 接收子组件的值，进行列表刷新
         if (refresh) {
             this.getAdminList();
         }
