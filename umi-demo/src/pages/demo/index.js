@@ -12,7 +12,18 @@ const DomToImg = () => {
     // 生成图片自动下载为png格式（将dom转为二进制再编译下载）
     const getBlobPng = () => {
         const node = document.getElementById("node");
-        domtoimage.toBlob(node).then((blob) => {
+        // domtoimage.toBlob
+        domtoimage.toPng(node).then((blob) => {
+                // const img = new Image();
+                // img.src = blob;
+                // img.setAttribute('className', 'pngImg');
+                // document.getElementById('export-img').appendChild(img);
+                //  img.addEventListener('click', () => {
+                //     var link = document.createElement('a');
+                //     link.download = 'png';
+                //     link.href = defaultUrl;
+                //     link.click();
+                // })
             // 调用file-save方法 直接保存图片
             saveAs(blob)
         })
@@ -22,7 +33,11 @@ const DomToImg = () => {
         const node = document.getElementById("node");
         domtoimage.toJpeg(node)
             .then((defaultUrl) => {
-                saveAs(defaultUrl)
+                //  const img = new Image();
+                // img.src = defaultUrl;
+                // img.setAttribute('className', 'jpgImg');
+                // document.getElementById('export-img').appendChild(img);
+                // saveAs(defaultUrl)
             });
     }
     // 转为SVG图片---手动下载 （自动下载调用saveAs(defaultUrl, '自动保存.png'))
@@ -30,16 +45,17 @@ const DomToImg = () => {
         const node = document.getElementById("node");
         domtoimage.toSvg(node, { filter: filter })
             .then((defaultUrl) => {
-                const img = new Image();
-                img.src = defaultUrl;
-                img.setAttribute('className', 'svgImg');
-                document.getElementById('export-img').appendChild(img);
-                img.addEventListener('click', () => {
-                    var link = document.createElement('a');
-                    link.download = 'SVG';
-                    link.href = defaultUrl;
-                    link.click();
-                })
+                // const img = new Image();
+                // img.src = defaultUrl;
+                // img.setAttribute('className', 'svgImg');
+                // document.getElementById('export-img').appendChild(img);
+                // img.addEventListener('click', () => {
+                //     var link = document.createElement('a');
+                //     link.download = 'SVG';
+                //     link.href = defaultUrl;
+                //     link.click();
+                // })
+                saveAs(defaultUrl)
             });
     }
     return (<div className='dom-to-img'>
@@ -55,19 +71,26 @@ const DomToImg = () => {
                     <UploadOutlined /> 转为svg图片
                 </Button>
             </Space>
+           
         </div>
-        <div id="node" className="node-content" style={{ textAlign: 'center' }}>
+         
+        <div id="node" className="node-content" style={{ textAlign: 'center',backgroundColor:'#fff'  }}>
             <Button type="primary">
-                Primary
+               YES
+            </Button>
+            or
+            <Button type="primary">
+               NO
             </Button>
             <div>
-                工位、小巢、滴答；<br />
-                摸鱼、接水、厕所；<br />
-                好的、收到、回家。<br />
+            React 从诞生之初就是可被逐步采用的，<br />
+            因而你可以按需引入或多或少的 React 特性。<br />
+            不管你是想体验下 React，用它给简单的 HTML 页面增加一点交互<br />
             </div>
             <ScissorOutlined />
-            <img src={img} alt="" style={{ width: '200px', height: '200px' }} />
+            <img src={img} alt="" style={{ width: '200px', height: '200px'}} />
         </div>
+        <div id="export-img" className="my-image"></div>
     </div>)
 }
 

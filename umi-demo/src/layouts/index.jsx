@@ -9,40 +9,58 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-
-
+import { HashRouter as Router, Route, Link } from "react-router-dom";
 import DomToImg from '../pages/demo/index'
-import { BrowserRouter as Router, Route, Link,Switch } from "react-router-dom";
+import Test from '../pages/test/index'
+
 const { Header, Sider, Content } = Layout;
 
 class SiderDemo extends React.Component {
   state = {
     collapsed: false,
+    currentItem: ''
   };
 
   toggle = () => {
+
     this.setState({
       collapsed: !this.state.collapsed,
     });
-  };
 
+  };
+  changeItem = () => {
+    
+    this.setState({
+      currentItem: 1
+    })
+    const urlParams = new URL(window.location.href);
+    const pathname = urlParams?.pathname;
+    console.log("urlParams", urlParams);
+  }
   render() {
+
+
     return (
       <Router >
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-              <Menu.Item key="1" icon={<UserOutlined />}>
-                <Link to='/domtoimg'>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={[this.state.currentItem]} >
+              <Menu.Item key="1" icon={<UserOutlined />} onClick={this.changeItem}>
+                <Link to={`/domtoimg/1`}>
                   nav 1
                 </Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                nav 2
+                <Link to={`/domtoimg/2`}>
+                  nav 2
+                </Link>
+
               </Menu.Item>
               <Menu.Item key="3" icon={<UploadOutlined />}>
-                nav 3
+                <Link to={`/domtoimg/3`}>
+                  nav 3
+                </Link>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -62,7 +80,8 @@ class SiderDemo extends React.Component {
                 minHeight: 280,
               }}
             >
-              <Route path="/domtoimg" component={DomToImg}></Route>
+              <Route path="/domtoimg/1" component={DomToImg}></Route>
+
             </Content>
           </Layout>
         </Layout>
