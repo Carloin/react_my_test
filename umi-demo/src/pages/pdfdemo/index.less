@@ -1,0 +1,36 @@
+#pdf {
+    font-size: 8pt;
+    color: #333;
+    background-color: #fff;
+    
+    // 定义文本为垂直排布，使用左对齐，内容从上到下垂直流动，这样在子元素中使用flex布局的wrap，将会在纵向换行，如此便实现了横铺的分页
+    writing-mode: vertical-lr;
+    
+    // 此处在测试完毕之后需要将dom使用绝对定位固定
+    // 因为html2canvas的截图范围似乎和滚动条相关
+    // box-sizing: border-box;
+    // position: fixed;
+    // top: 0pt;
+    // left: 0pt;
+    // left: -9999pt;
+    // z-index: -9999;
+    
+    #pdf-header,
+    #pdf-footer {
+        // 在需要的地方将对其脚本修改回来
+        writing-mode: horizontal-tb;
+        // box-sizing: border-box;
+    }
+    #pdf-content {
+        background-color: #fff;
+        // box-sizing: border-box;
+        display: inline-flex;
+        flex-flow: row wrap;
+        * {
+            // box-sizing: border-box;
+            writing-mode: horizontal-tb;
+        }
+    }
+
+
+}
