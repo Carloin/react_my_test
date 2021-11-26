@@ -2,7 +2,7 @@
  * @Author: hft
  * @Date: 2021-11-23 11:30:12
  * @LastEditors: hft
- * @LastEditTime: 2021-11-23 15:59:36
+ * @LastEditTime: 2021-11-25 15:58:26
  * @Description: file content
 -->
 # umi project
@@ -12,18 +12,19 @@
  ```bash
  yarn create @umijs/umi-app
 ```
-将tsx文件改成jsx
 
-## Getting Started
+创建下来是`.tsx`后缀的文件，可将`.tsx`后缀改成`.jsx`后缀
 
-Install dependencies,
+## 开始项目
+
+下载依赖
 
 ```bash
-$ yarn
+ yarn
 ```
 
-Start the dev server,
+运行
 
 ```bash
-$ yarn start
+ yarn start
 ```
