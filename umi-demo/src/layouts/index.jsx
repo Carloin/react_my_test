@@ -12,15 +12,41 @@ import {
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import DomToImg from '../pages/demo/index'
 import Test from '../pages/test/index'
-
+import getQueryVariable from '../utils/urlparameter';
 const { Header, Sider, Content } = Layout;
 
+
+
 class SiderDemo extends React.Component {
+
   state = {
     collapsed: false,
-    currentItem: ''
+    currentItem: '',
+    menuData: []
   };
+  componentDidMount = () => {
+    const menuData = [
+      {
+        menuUrl: '/domtoimg/1', menuName: 'nav 1', menuIcon: <UserOutlined />
+      },
+      {
+        menuUrl: '/domtoimg/2', menuName: 'nav 2', menuIcon: <VideoCameraOutlined />
+      },
+      {
+        menuUrl: '/domtoimg/3', menuName: 'nav 3', menuIcon: <UploadOutlined />
+      }
 
+    ]
+    // this.setState({
+    //   menuData
+    // }) 
+
+    let id = getQueryVariable('id')
+    this.setState({
+      menuData,
+      currentItem: id
+    })
+  }
   toggle = () => {
 
     this.setState({
@@ -28,40 +54,34 @@ class SiderDemo extends React.Component {
     });
 
   };
-  changeItem = () => {
-    
+  changeItem = (e) => {
     this.setState({
-      currentItem: 1
+      currentItem: e.key
     })
-    const urlParams = new URL(window.location.href);
-    const pathname = urlParams?.pathname;
-    console.log("urlParams", urlParams);
   }
   render() {
-
-
     return (
       <Router >
         <Layout>
           <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={[this.state.currentItem]} >
-              <Menu.Item key="1" icon={<UserOutlined />} onClick={this.changeItem}>
-                <Link to={`/domtoimg/1`}>
-                  nav 1
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to={`/domtoimg/2`}>
-                  nav 2
-                </Link>
+            {/* 
+            使用的是通过获取路由参数让menu栏已选中的数据刷新后不会重置
+            注意defaultSelectedKeys要改成selectedKeys
+             */}
+            <Menu theme="dark" mode="inline" selectedKeys={[this.state.currentItem]} >
+              {
 
-              </Menu.Item>
-              <Menu.Item key="3" icon={<UploadOutlined />}>
-                <Link to={`/domtoimg/3`}>
-                  nav 3
-                </Link>
-              </Menu.Item>
+                this.state.menuData.map((item, index) => {
+                  // 记得return返回数据，否则侧栏数据显示不了
+                  return (<Menu.Item key={index} icon={item.menuIcon} onClick={(e) => this.changeItem(e)}>
+                    <Link to={{ pathname: item.menuUrl, query: { id: index } }}>
+                      {item.menuName}
+                    </Link>
+                  </Menu.Item>)
+                })
+              }
+
             </Menu>
           </Sider>
           <Layout className="site-layout">
@@ -80,6 +100,7 @@ class SiderDemo extends React.Component {
                 minHeight: 280,
               }}
             >
+              {/* <Route path="/:id" component={DomToImg}></Route> */}
               <Route path="/domtoimg/1" component={DomToImg}></Route>
 
             </Content>
